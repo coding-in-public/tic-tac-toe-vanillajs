@@ -1,0 +1,80 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --hue: 10;
+  --bkg: var(--hue) 40% 98%;
+  --text: var(--hue) 80% 20%;
+  --accent: var(--hue) 60% 50%;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  gap: 2rem;
+  place-items: center;
+  place-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: hsl(var(--bkg));
+  color: hsl(var(--text));
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--bkg));
+  padding: 0.5rem 1.5rem;
+  border-radius: 100vmax;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 600px;
+  max-width: 90vw;
+  aspect-ratio: 1/1;
+}
+
+.tile {
+  border: 2px solid hsl(var(--text));
+  background-color: hsl(var(--bkg));
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: hsl(var(--hue) 60% 50%);
+  font-weight: bold;
+  font-size: clamp(2rem, calc(10vw + 1rem), 10rem);
+  aspect-ratio: 1/1;
+}
+
+.tile:focus {
+  border-color: hsl(var(--hue) 60% 50%);
+  outline: 3px solid hsl(var(--hue) 60% 50%);
+}
+
+.tile[data-value] {
+  cursor: not-allowed;
+}
+
+.tile[data-hover]::before {
+  content: attr(data-hover);
+  opacity: 0.5;
+}
+
+.tile[data-value]::before {
+  content: attr(data-value);
+  opacity: 1;
+}
