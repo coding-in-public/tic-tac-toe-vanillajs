@@ -1,6 +1,8 @@
 // selectors
 const gameBoard = document.querySelector("#board");
 const info = document.querySelector("#info");
+const newGameBtn = document.getElementById("new-game-btn");
+
 let turn;
 const winningCombos = [
   [0, 1, 2], // top row
@@ -64,6 +66,8 @@ function showCongrats() {
   setTimeout(restartGame, 1000);
 }
 
+// Check score function with check for draw
+
 function checkScore() {
   const allTiles = [...document.querySelectorAll(".tile")];
   const tileValues = allTiles.map((t) => t.dataset.value);
@@ -75,10 +79,19 @@ function checkScore() {
       tileValues[a] === tileValues[c]
     );
   });
+
+  const isDraw = !isWinner && tileValues.every((val) => val !== undefined);
+
   if (isWinner) {
     return showCongrats();
+  } else if (isDraw) {
+    info.textContent = "It's a draw!";
+    gameBoard.removeEventListener("click", handleGameboardClick);
+    gameBoard.setAttribute("inert", true);
+    showNewGameBtn();
+  } else {
+    updateTurn();
   }
-  updateTurn();
 }
 
 function handleGameboardClick(e) {
@@ -93,6 +106,7 @@ function handleGameboardClick(e) {
 function handleMouseEnter(e) {
   const valueExists = e.target.dataset.value;
   if (!valueExists) {
+    hideNewGameBtn();
     e.target.dataset.hover = turn;
     e.target.style.setProperty("--hue", turn === "X" ? 10 : 200);
   }
@@ -100,4 +114,36 @@ function handleMouseEnter(e) {
 
 function handleMouseLeave(e) {
   e.target.dataset.hover = "";
+}
+
+// new game function
+
+function newGame() {
+  newGameBtn.addEventListener("click", () => {
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      emojis: ["✖️", "🔴", "🎯", "🎮"],
+    });
+    jsConfetti.addConfetti({
+      confettiRadius: 10,
+    });
+    createGameboard();
+  });
+  hideNewGameBtn();
+}
+
+newGame();
+
+//Show new game btn function
+
+function showNewGameBtn() {
+  const newGameBtn = document.getElementById("new-game-btn");
+  newGameBtn.style.display = "initial";
+}
+
+//Hide new game btn function
+
+function hideNewGameBtn() {
+  const newGameBtn = document.getElementById("new-game-btn");
+  newGameBtn.style.display = "none";
 }

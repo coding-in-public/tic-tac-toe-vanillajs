@@ -29,6 +29,12 @@ h1 {
   font-size: 3rem;
 }
 
+/* bottom footer containes the info and new game button */
+.footer {
+  display: flex;
+  gap: 1rem;
+}
+
 p {
   font-size: 1.5rem;
   font-weight: bold;
@@ -36,6 +42,21 @@ p {
   color: hsl(var(--bkg));
   padding: 0.5rem 1.5rem;
   border-radius: 100vmax;
+}
+
+/* Starting anew game button */
+
+.new-game-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--bkg));
+  padding: 0.5rem 1.5rem;
+  border-radius: 100vmax;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px 0px hsl(var(--accent));
 }
 
 .gameboard {
@@ -77,4 +98,63 @@ p {
 .tile[data-value]::before {
   content: attr(data-value);
   opacity: 1;
+}
+
+/* Media Quries */
+
+/* *
+*
+*
+*   from 1025px to 1366px 
+*
+*
+*
+* */
+
+/* <-----------------From 1025px to 1366px-------------------> */
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .tile {
+    width: 140px;
+    height: 140px;
+    font-size: clamp(2rem, calc(10vw + 1rem), 6rem);
+  }
+
+  .gameboard {
+    width: 450px;
+    height: 450px;
+  }
+
+  body {
+    max-height: 600px;
+    gap: 1.2rem;
+  }
+}
+
+/* *
+*
+*
+*   from 600px to 1024px 
+*
+*
+*
+* */
+
+/* <-----------------From 600px to 1024px-------------------> */
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .gameboard {
+    width: 450px;
+    height: 450px;
+  }
+
+  body {
+    max-height: 600px;
+  }
 }
