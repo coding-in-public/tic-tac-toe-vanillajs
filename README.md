@@ -1,6 +1,15 @@
 # Tic-Tac-Toe Game
 A great game for everyone - whether old or young.
 <br>
+
+Visit my project! <br>
+https://codinginpublic.dev/projects/tic-tac-toe/
+---
+
+If you like my project, I would be happy about a star ⭐!
+
+---
+
 ## Different colors
 Whose turn is it?
 Very easily; who has blue or red; the color changes after each move, so you never forget whose turn it is.
