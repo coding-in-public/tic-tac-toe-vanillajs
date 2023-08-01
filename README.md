@@ -4,6 +4,7 @@ A great game for everyone - whether old or young.
 
 Visit my project! <br>
 https://codinginpublic.dev/projects/tic-tac-toe/
+
 ---
 
 If you like my project, I would be happy about a star ⭐!
